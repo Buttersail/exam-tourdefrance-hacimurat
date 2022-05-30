@@ -30,7 +30,7 @@ public class RiderController {
         return riderService.getRider(id);
     }
 
-    @PostMapping("/{id}")
+    @PostMapping()
     public RiderResponse addRider(@RequestBody RiderRequest body) {
         return riderService.addRider(body);
     }
