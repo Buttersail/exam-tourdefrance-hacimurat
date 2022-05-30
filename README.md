@@ -1,4 +1,4 @@
-# 24 Hours Examproject Frontend
+# 24 Hours Examproject Backend
 
 ## Frontend link:
 https://github.com/Buttersail/24-hr-exam-frontend-murat
