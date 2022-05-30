@@ -5,9 +5,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.ManyToOne;
+import javax.persistence.*;
 
 @Entity
 @Getter
@@ -16,11 +14,12 @@ import javax.persistence.ManyToOne;
 public class Rider {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
     private String name;
 
-    @ManyToOne
+    @ManyToOne()
     private Team team;
 
     public Rider(String name) {

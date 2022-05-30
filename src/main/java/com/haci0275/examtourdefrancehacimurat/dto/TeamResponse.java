@@ -5,6 +5,9 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 @Getter
 @Setter
 @AllArgsConstructor
@@ -20,4 +23,8 @@ public class TeamResponse {
         this.teamLetter = body.getTeamLetter();
     }
 
+    public static List<TeamResponse> getTeamsFromEntities(List<Team> teams) {
+        return teams.stream().map(team -> new TeamResponse(team)).collect(Collectors.toList());
+
+    }
 }
