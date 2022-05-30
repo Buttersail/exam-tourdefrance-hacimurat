@@ -23,7 +23,7 @@ public class TeamController {
     }
 
     @GetMapping("/{id}")
-    public TeamResponse getMovieAdmin(@PathVariable int id) throws Exception {
+    public TeamResponse getTeam(@PathVariable int id) throws Exception {
         return teamService.getTeam(id);
     }
 
