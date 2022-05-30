@@ -27,17 +27,17 @@ public class TeamController {
         return teamService.getTeam(id);
     }
 
-    @PostMapping()
+    @PostMapping("/{id}")
     public TeamResponse addTeam(@RequestBody TeamRequest body) {
         return teamService.addTeam(body);
     }
 
-    @PutMapping()
+    @PutMapping("/{id}")
     public TeamResponse editTeam(@RequestBody TeamRequest body, @PathVariable int id) {
         return teamService.editTeam(body, id);
     }
 
-    @DeleteMapping()
+    @DeleteMapping("/{id}")
     public void deleteTeam(@PathVariable int id) {
         teamService.deleteTeam(id);
     }

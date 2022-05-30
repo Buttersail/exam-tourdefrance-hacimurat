@@ -28,5 +28,6 @@ public class Rider {
     }
 
     public Rider(RiderRequest body) {
+        this.name = body.getName();
     }
 }

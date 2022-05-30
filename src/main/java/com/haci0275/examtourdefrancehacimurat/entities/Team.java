@@ -32,6 +32,8 @@ public class Team {
     }
 
     public Team(TeamRequest body) {
+        this.name = body.getName();
+        this.teamLetter = body.getTeamLetter();
     }
 
     public void addRider(Rider rider) {

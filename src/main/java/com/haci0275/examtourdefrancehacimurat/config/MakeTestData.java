@@ -26,6 +26,13 @@ public class MakeTestData implements ApplicationRunner {
 
     public void makeTeamsWithRiders(){
 
+        Team team2 = new Team("Team+", "+");
+
+        Rider rider3 = new Rider("TeamRider");
+
+        team2.addRider(rider3);
+
+        teamRepository.saveAll(List.of(team2));
 
     }
 
