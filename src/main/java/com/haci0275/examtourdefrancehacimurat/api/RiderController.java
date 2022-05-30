@@ -2,6 +2,7 @@ package com.haci0275.examtourdefrancehacimurat.api;
 
 import com.haci0275.examtourdefrancehacimurat.dto.RiderRequest;
 import com.haci0275.examtourdefrancehacimurat.dto.RiderResponse;
+import com.haci0275.examtourdefrancehacimurat.dto.TeamResponse;
 import com.haci0275.examtourdefrancehacimurat.services.RiderService;
 import org.springframework.web.bind.annotation.*;
 
@@ -18,17 +19,28 @@ public class RiderController {
         this.riderService = riderService;
     }
 
-    @PostMapping
+
+    @GetMapping()
+    public List<RiderResponse> getRiders() {
+        return riderService.getRiders();
+    }
+
+    @GetMapping("/{id}")
+    public RiderResponse getRider(@PathVariable int id) throws Exception {
+        return riderService.getRider(id);
+    }
+
+    @PostMapping()
     public RiderResponse addRider(@RequestBody RiderRequest body) {
         return riderService.addRider(body);
     }
 
-    @PutMapping
+    @PutMapping()
     public RiderResponse editRider(@RequestBody RiderRequest body, @PathVariable int id) {
         return riderService.editRider(body, id);
     }
 
-    @DeleteMapping
+    @DeleteMapping()
     public void deleteRider(@PathVariable int id) {
         riderService.deleteRider(id);
     }

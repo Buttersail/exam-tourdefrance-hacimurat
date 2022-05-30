@@ -9,6 +9,7 @@ import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Set;
@@ -16,6 +17,7 @@ import java.util.Set;
 @Component
 @AllArgsConstructor
 @Profile("!test")
+@Transactional
 public class MakeTestData implements ApplicationRunner {
 
 
@@ -23,19 +25,22 @@ public class MakeTestData implements ApplicationRunner {
     TeamRepository teamRepository;
 
     public void makeTeamsWithRiders(){
-        Team team1 = new Team("SletteMette","A");
-        Team team2 = new Team("DetVedJegIkke", "?");
 
-        Rider rider1 = new Rider("Oguzhan Memis");
-        Rider rider2 = new Rider("Hakan Memis");
-        Rider rider3 = new Rider("Halit Memis");
-        Rider rider4 = new Rider("Annette Schou");
 
-        team1.addRiders(Set.of(rider1, rider2));
-        team2.addRiders(Set.of(rider3, rider4));
+    }
 
-        //teamRepository.saveAll(List.of(team1, team2));
+    public void makeRiders() {
+        Rider rider1 = new Rider("Hakan");
+        Rider rider2 = new Rider("Oguzhan");
 
+        riderRepository.save(rider1);
+        riderRepository.save(rider2);
+    }
+
+    public void makeTeams() {
+        Team team1 = new Team("Test", "T");
+
+        teamRepository.save(team1);
     }
 
 
@@ -45,6 +50,9 @@ public class MakeTestData implements ApplicationRunner {
     public void run(ApplicationArguments args) throws Exception {
 
         makeTeamsWithRiders();
+        makeRiders();
+        makeTeams();
 
     }
 }
+;

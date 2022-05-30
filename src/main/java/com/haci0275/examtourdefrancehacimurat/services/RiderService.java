@@ -2,10 +2,15 @@ package com.haci0275.examtourdefrancehacimurat.services;
 
 import com.haci0275.examtourdefrancehacimurat.dto.RiderRequest;
 import com.haci0275.examtourdefrancehacimurat.dto.RiderResponse;
+import com.haci0275.examtourdefrancehacimurat.dto.TeamResponse;
 import com.haci0275.examtourdefrancehacimurat.entities.Rider;
+import com.haci0275.examtourdefrancehacimurat.entities.Team;
 import com.haci0275.examtourdefrancehacimurat.error.Client4xxException;
 import com.haci0275.examtourdefrancehacimurat.repositories.RiderRepository;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 public class RiderService {
@@ -14,6 +19,16 @@ public class RiderService {
 
     public RiderService(RiderRepository riderRepository) {
         this.riderRepository = riderRepository;
+    }
+
+    public List<RiderResponse> getRiders(){
+        List<Rider> riders = riderRepository.findAll();
+        return RiderResponse.getTeamsFromEntities(riders);
+    }
+
+    public RiderResponse getRider(int id) throws Exception {
+        Rider rider = riderRepository.findById(id).orElseThrow(() -> new Client4xxException("Fejl", HttpStatus.NOT_FOUND));
+        return new RiderResponse(rider);
     }
 
     public RiderResponse addRider(RiderRequest body) {
@@ -31,7 +46,7 @@ public class RiderService {
         try {
             riderRepository.delete(rider);
         } catch (Exception ex) {
-            throw new RuntimeException();
+            throw new Client4xxException("Fejl", HttpStatus.NOT_FOUND);
 
         }
     }

@@ -1,5 +1,6 @@
 package com.haci0275.examtourdefrancehacimurat.entities;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.haci0275.examtourdefrancehacimurat.dto.RiderRequest;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

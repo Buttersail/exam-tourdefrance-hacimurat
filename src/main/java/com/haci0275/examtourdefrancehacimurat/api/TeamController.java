@@ -17,7 +17,7 @@ public class TeamController {
         this.teamService = teamService;
     }
 
-    @GetMapping
+    @GetMapping()
     public List<TeamResponse> getTeams() {
         return teamService.getTeams();
     }
@@ -27,17 +27,17 @@ public class TeamController {
         return teamService.getTeam(id);
     }
 
-    @PostMapping
+    @PostMapping()
     public TeamResponse addTeam(@RequestBody TeamRequest body) {
         return teamService.addTeam(body);
     }
 
-    @PutMapping
+    @PutMapping()
     public TeamResponse editTeam(@RequestBody TeamRequest body, @PathVariable int id) {
         return teamService.editTeam(body, id);
     }
 
-    @DeleteMapping
+    @DeleteMapping()
     public void deleteTeam(@PathVariable int id) {
         teamService.deleteTeam(id);
     }

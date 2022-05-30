@@ -6,7 +6,9 @@ import com.haci0275.examtourdefrancehacimurat.dto.TeamRequest;
 import com.haci0275.examtourdefrancehacimurat.dto.TeamResponse;
 import com.haci0275.examtourdefrancehacimurat.entities.Rider;
 import com.haci0275.examtourdefrancehacimurat.entities.Team;
+import com.haci0275.examtourdefrancehacimurat.error.Client4xxException;
 import com.haci0275.examtourdefrancehacimurat.repositories.TeamRepository;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -26,7 +28,7 @@ public class TeamService {
     }
 
     public TeamResponse getTeam(int id) throws Exception {
-        Team team = teamRepository.findById(id).orElseThrow(() -> new RuntimeException());
+        Team team = teamRepository.findById(id).orElseThrow(() -> new Client4xxException("Fejl", HttpStatus.NOT_FOUND));
         return new TeamResponse(team);
     }
 
@@ -45,7 +47,7 @@ public class TeamService {
         try {
             teamRepository.delete(team);
         } catch (Exception ex) {
-            throw new RuntimeException();
+            throw new Client4xxException("Fejl", HttpStatus.NOT_FOUND);
 
         }
     }
