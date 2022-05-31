@@ -15,10 +15,27 @@ public class RiderResponse {
 
     private int id;
     private String name;
+    private String country;
+    private int age;
+    private double time;
+    private int mountainPts;
+    private int sprintPts;
+
+    private TeamResponse team;
 
     public RiderResponse(Rider body) {
         this.id = body.getId();
         this.name = body.getName();
+        this.country = body.getCountry();
+        this.age = body.getAge();
+        this.time = body.getTime();
+        this.mountainPts = body.getMountainPts();
+        this.sprintPts = body.getSprintPts();
+
+        if (body.getTeam() != null) {
+            this.team = new TeamResponse(body.getTeam());
+        }
+
     }
 
     public static List<RiderResponse> getTeamsFromEntities(List<Rider> riders) {

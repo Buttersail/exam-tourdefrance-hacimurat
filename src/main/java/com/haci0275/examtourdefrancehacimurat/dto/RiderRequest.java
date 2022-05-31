@@ -12,5 +12,12 @@ import lombok.Setter;
 public class RiderRequest {
 
     String name;
+    String country;
+    int age;
+    double time;
+    int mountainPts;
+    int sprintPts;
+
+    String teamLetter;
 
 }

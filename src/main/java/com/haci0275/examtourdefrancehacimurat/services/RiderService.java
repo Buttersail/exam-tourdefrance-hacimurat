@@ -37,7 +37,14 @@ public class RiderService {
     }
 
     public RiderResponse editRider(RiderRequest body, int id) {
-        Rider rider = riderRepository.findById(id).orElseThrow();
+        Rider rider = riderRepository.findById(id).orElseThrow(() -> new Client4xxException("Fejl", HttpStatus.NOT_FOUND));
+
+        rider.setName(rider.getName());
+        rider.setCountry(rider.getCountry());
+        rider.setAge(rider.getAge());
+        rider.setTime((rider.getTime()));
+        rider.setMountainPts(rider.getMountainPts());
+        rider.setSprintPts(rider.getSprintPts());
         return new RiderResponse(riderRepository.save(rider));
     }
 

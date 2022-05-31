@@ -19,15 +19,31 @@ public class Rider {
     private int id;
 
     private String name;
+    private String country;
+    private int age;
+    private double time;
+    private int mountainPts;
+    private int sprintPts;
+    //private int totalPts;
 
     @ManyToOne()
     private Team team;
 
-    public Rider(String name) {
+    public Rider(String name, String country, int age, double time, int mountainPts, int sprintPts) {
         this.name = name;
+        this.country = country;
+        this.age = age;
+        this.time = time;
+        this.mountainPts = mountainPts;
+        this.sprintPts = sprintPts;
     }
 
     public Rider(RiderRequest body) {
         this.name = body.getName();
+        this.country = body.getCountry();
+        this.age = body.getAge();
+        this.time = body.getTime();
+        this.mountainPts = body.getMountainPts();
+        this.sprintPts = body.getSprintPts();
     }
 }
